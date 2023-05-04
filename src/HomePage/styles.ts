@@ -19,7 +19,10 @@ export const Section = styled.section`
     }
 
     @media(max-width: 768px) {
-        overflow: hidden;
+        height: auto;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
     }
 `;
 
@@ -54,6 +57,49 @@ export const Navigation = styled.nav<Props>`
     }
 `;
 
+export const MobileNav = styled.nav`
+    height: 100%;
+    max-width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg {
+        color: #004526;
+        height: 30px;
+        width: 40px;
+    }
+`;
+
+export const MobileNavAside = styled.div<{showMenu:boolean}>`
+    height: auto;
+    width: auto;
+    background-color: rgba(2, 124, 32);
+    transition: all ease .8s;
+    padding: 30px;
+    opacity: 1;
+    position: fixed;
+    top:0;
+    right: ${props => props.showMenu === true ? '0' : '-90vw'};
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+
+    span {
+        font-weight: bold;
+    }
+
+    svg {
+        height: 30px;
+        width: 30px;
+        color: #004526;
+    }
+
+`
+
 export const RightSideNav = styled.div`
     width: 500px;
     display: flex;
@@ -70,4 +116,10 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media(max-width: 768px) {
+        min-height: 90vh;
+        max-width: 80%;
+        overflow: visible;
+    }
 `;

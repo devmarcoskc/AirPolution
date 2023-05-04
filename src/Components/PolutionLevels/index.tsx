@@ -4,17 +4,20 @@ import { InputLatAndLon } from '../../Types/types';
 import { getPolutionInfos } from '../../Hooks/ApiRequest';
 import { ResponseAirPolution } from '../../Types/types';
 import { useState, useEffect } from 'react';
-
+import useMediaQuery from '../../Hooks/useMediaQuery';
 
 type Props = {
     menuControl: number;
+    goToPolutionCases: (e: React.MouseEvent<HTMLSpanElement>) => void;
+    goToDoYourPart: (e: React.MouseEvent<HTMLSpanElement>) => void;
 }
 
-const PolutionLevels = ({menuControl}: Props) => {
+const PolutionLevels = ({menuControl, goToDoYourPart, goToPolutionCases}: Props) => {
   const [resultsToShow, setResultsToShow] = useState<boolean>(false);
   const [apiResult, setApiResult] = useState<ResponseAirPolution>();
   const [errorMsgToShow, setErrorMsgToShow] = useState<boolean>(false);
   const [opacity, setOpacity] = useState<number>(0);
+  const isDesktopScreen = useMediaQuery("(min-width: 1060px)");
 
   useEffect(() => {
     setTimeout(() => {
@@ -96,11 +99,18 @@ const PolutionLevels = ({menuControl}: Props) => {
                 para calcularmos e mostrar os resultados dos níveis de Poluição Atmosférica
                 em tempo real.
             </h2>
-            <span>
-                Não sabe como fazer ? Vá em google maps, digite seu local e clique
-                com o botao direito do mouse.
+            {isDesktopScreen &&
+                <span>
+                    Não sabe como fazer ? Vá em google maps, digite seu local e clique
+                    com o botao direito do mouse.
+                </span>
+            }
+            {!isDesktopScreen &&
+                <span>
+                Não sabe como fazer ? Abra o google maps e mantenha o dedo pressionado
+                na localização desejada, as coordenadas devem aparecer na barra de pesquisa.
             </span>
-
+            }
             <button type="submit">Ver Resultados</button>
         </C.Form>
         </C.SearchPolutionArea>
@@ -108,14 +118,30 @@ const PolutionLevels = ({menuControl}: Props) => {
         {resultsToShow &&
          <C.ResultPolutionArea>
             <h1>Níveis de Poluição da Sua Localidade Agora:</h1>
+            {!isDesktopScreen &&
+                <h6>
+                    Todos os valores abaixos estão na unidade: 
+                    microgramas/metro cúbico (μg/m³) 
+                </h6>
+            }
             <table>
                 <thead>
-                    <tr>
-                        <th>Poluente:</th>
-                        <th>Resultado(μg/m3):</th>
-                        <th>Resultados Aceitáveis(μg/m3):</th>
-                        <th>Resultados Ruins(μg/m3):</th>
-                    </tr>
+                    {isDesktopScreen &&
+                        <tr>
+                            <th>Poluente:</th>
+                            <th>Resultado(μg/m3):</th>
+                            <th>Resultados Aceitáveis(μg/m3):</th>
+                            <th>Resultados Ruins(μg/m3):</th>
+                        </tr>
+                    }
+                    {!isDesktopScreen &&
+                        <tr>
+                            <th>Poluente:</th>
+                            <th>Resultados:</th>
+                            <th>Resultados Aceitáveis:</th>
+                            <th>Resultados Ruins:</th>
+                        </tr>
+                    }
                 </thead>
                 <tbody>
                     <tr>
@@ -204,7 +230,15 @@ const PolutionLevels = ({menuControl}: Props) => {
                 Ozônio (O3), Material Particulado Fino (diâmetro inferior a 2,5 micrometros), 
                 Material Particulado Fino (diâmetro inferior a 10 micrometros), Dióxido de Enxofre (SO2) 
             </p>
-            <button onClick={() => setResultsToShow(false)}>Voltar</button>
+            <div className='bottom-menu-area'>
+                <button onClick={() => setResultsToShow(false)}>Voltar</button>
+                {!isDesktopScreen &&
+                    <span onClick={goToDoYourPart}>Faça Sua Parte</span>
+                }
+                {!isDesktopScreen &&
+                    <span onClick={goToPolutionCases}>O que Causa Poluição</span>
+                }
+            </div>
         </C.ResultPolutionArea>
         }
     </C.Container>

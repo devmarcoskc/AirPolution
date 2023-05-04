@@ -44,6 +44,17 @@ export const LeftSide = styled.div`
         margin-top: 5px;
         font-size: 13px;
     }
+
+    @media(max-width: 768px) {
+        h2 {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        p {
+            font-size: 11px;
+            text-align: justify;
+        }
+    }
 `;
 
 export const RightSide = styled.div`
@@ -64,6 +75,17 @@ export const RightSide = styled.div`
         color: white;
         margin-top: 5px;
         font-size: 14px;
+    }
+
+    @media(max-width: 768px) {
+        h2 {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        p {
+            font-size: 11px;
+            text-align: justify;
+        }
     }
 
 `

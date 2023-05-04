@@ -57,6 +57,20 @@ export const DoYourPartContainer = styled(motion.div)<{menuControl: number}>`
         font-size: 25px;
         cursor: pointer;
     }
+
+    @media(max-width: 768px) {
+        height: auto;
+        max-width: 320px;
+        margin: auto;
+
+        .arrow-right {
+            right: 0px;
+        }
+
+        .arrow-left {
+            left: 0px;
+        }
+    }
 `;
 
 export const Slider = styled.div<{sliderToMove:number}>`
@@ -77,7 +91,27 @@ export const Slider = styled.div<{sliderToMove:number}>`
                 break;
         }
     }};
-`
+`;
+
+export const SliderMobile = styled.div<{sliderToMove:number}>`
+    height: 100%;
+    min-width: 600px;
+    transition: all ease .8s;
+    display: flex;
+    margin-left: ${(props) => {
+        switch(props.sliderToMove) {
+            case 0:
+                return "0px";
+                break;
+            case 1:
+                return "-320px";
+                break;
+            case 2: 
+                return "-640px";
+                break;
+        }
+    }};
+`;
 
 export const ItemSlider = styled.div`
     display: flex;
@@ -117,5 +151,22 @@ export const ItemSlider = styled.div`
         }
     }
     
+    @media(max-width: 768px) {
+        min-width: 320px;
+
+        h1 {
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .text-and-svg {
+            max-width: 70%;
+
+            p {
+                font-size: 15px;
+                text-align: center;
+            }
+        }
+    }
 
 `

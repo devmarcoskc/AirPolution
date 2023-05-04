@@ -29,6 +29,10 @@ export const SearchPolutionArea = styled(motion.div)<Props>`
         font-weight: 300;
         margin-top: 20px;
     }
+
+    @media(max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 export const Form = styled.form`
@@ -106,6 +110,12 @@ export const Form = styled.form`
             background-color: #01411C;
         }
     }
+
+    @media(max-width: 768px) {
+        .lat-and-lon-flex-div {
+            flex-direction: column;
+        }
+    }
 `;
 
 export const ResultPolutionArea = styled.div`
@@ -116,13 +126,18 @@ export const ResultPolutionArea = styled.div`
     flex-direction: column;
     background-color: rgba(2, 124, 32, 0.4);
     box-shadow: 0px 0px 30px #004526;
-    margin-bottom: 40x;
+    margin-bottom: 50x;
 
     h1 {
         color:#004526;
         margin-bottom: 10px;
         font-size: 20px;
         font-weight: 600;
+    }
+
+    h6 {
+        color: white;
+        margin-bottom: 10px;
     }
 
     h2 {
@@ -177,22 +192,63 @@ export const ResultPolutionArea = styled.div`
         text-align: justify;
     }
 
-    button {
-        border: none;
-        padding: 15px;
-        background-color: none;
-        cursor: pointer;
-        width: 100px;
-        border-radius: 10px;
-        background-color: #004526;
-        color: white;
-        transition: all ease .8s;
-        opacity: 0.88;
-        margin-top: 10px;
+    .bottom-menu-area {
+        display: flex;
+        gap: 10px;
 
-        &:hover {
-            opacity: 1;
-            background-color: #01411C;
+        button {
+            border: none;
+            padding: 15px;
+            background-color: none;
+            cursor: pointer;
+            width: 100px;
+            border-radius: 10px;
+            background-color: #004526;
+            color: white;
+            transition: all ease .8s;
+            opacity: 0.88;
+            margin-top: 10px;
+    
+            &:hover {
+                opacity: 1;
+                background-color: #01411C;
+            }
+    }
+    
+    }
+
+    @media(max-width: 768px) {
+        min-width: 90vw;
+
+        h1 {
+            font-size: 17px;
+        }
+
+        h6 {
+            font-size: 14px;
+        }
+        th, td {
+            padding: 5px; 5px;
+            font-size: 10px;
+        }
+
+        thead .th-result-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+        .bottom-menu-area {
+            align-items: center;
+            span {
+                color: #004526;
+                font-size: 12px;
+                font-weight: bold;
+                text-decoration: underline;
+            }
         }
     }
 `;
