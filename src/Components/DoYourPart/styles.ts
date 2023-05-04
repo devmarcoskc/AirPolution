@@ -65,10 +65,24 @@ export const DoYourPartContainer = styled(motion.div)<{menuControl: number}>`
 
         .arrow-right {
             right: 0px;
+
+            svg {
+                height: 40px;
+                width: 30px;
+            }
         }
 
         .arrow-left {
             left: 0px;
+
+            svg {
+                height: 40px;
+                width: 30px;
+            }
+        }
+
+        .dots-area .dots {
+            font-size: 18px;
         }
     }
 `;
