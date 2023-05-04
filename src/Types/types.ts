@@ -2,7 +2,7 @@ export type InputLatAndLon = {
     lat: string
     lon: string
 }
-export interface ReponseAirPolution {
+export interface ResponseAirPolution {
     coord: number[]
     list: List[]
 }
