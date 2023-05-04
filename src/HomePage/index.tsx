@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import * as C from './styles';
-import BgGreen from '../assets/test.jpg';
+import BgGreen from '../assets/background.jpg';
 import DoYourPart from '../Components/DoYourPart';
 import PolutionCases from '../Components/PolutionCauses';
 import PolutionLevels from '../Components/PolutionLevels';
