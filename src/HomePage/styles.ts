@@ -77,7 +77,7 @@ export const MobileNavAside = styled.div<{showMenu:boolean}>`
     width: auto;
     background-color: rgba(2, 124, 32);
     transition: all ease .8s;
-    padding: 30px;
+    padding: 50px 30px;
     opacity: 1;
     position: fixed;
     top:0;
@@ -86,7 +86,7 @@ export const MobileNavAside = styled.div<{showMenu:boolean}>`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 13px;
+    gap: 20px;
 
     span {
         font-weight: bold;
