@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useState, useRef, useEffect } from 'react';
 import * as C from './styles';
 import BgGreen from '../assets/background.jpg';
 import DoYourPart from '../Components/DoYourPart';
@@ -14,6 +14,23 @@ const Home = () => {
   const isDesktopScreen = useMediaQuery("(min-width: 1060px)");
   const [isMenuToggled, setIsMenuToggled] = useState(false);
   
+  const refMobile = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if(!isDesktopScreen) {
+      let handler = (e:any) => {
+        if(!refMobile.current?.contains(e.target)) {
+          setIsMenuToggled(false);
+        }
+      };
+      document.addEventListener('mousedown', handler);
+
+      return() => {
+        document.removeEventListener('mousedown', handler);
+      }
+    }
+  }, []);
+
   const goToPolutionLevels = (e:React.MouseEvent<HTMLSpanElement>) => {
     setMenuControl(0);
   }
@@ -59,7 +76,7 @@ const Home = () => {
                 </C.MobileNav>
             }
             {!isDesktopScreen && 
-                <C.MobileNavAside showMenu={isMenuToggled}>
+                <C.MobileNavAside showMenu={isMenuToggled} ref={refMobile}>
                     <FiX onClick={() => setIsMenuToggled(!isMenuToggled)}/>
                     <span 
                         onClick={goToPolutionLevels}
